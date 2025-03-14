@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using REN.Models;
-using REN.Controllers;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using RENAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +21,10 @@ builder.Services.AddDbContext<RenContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("dbcs")
         ?? throw new InvalidOperationException("Connection string 'dbcs' is missing")));
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<RenContext>();
+
 
 //Identity configurations
-builder.Services.AddIdentity<User, IdentityRole>(options =>
+builder.Services.AddIdentity<User, Roles>(options =>
 {
     options.Password.RequireDigit = false;
     options.Password.RequireLowercase = false;
@@ -50,7 +51,7 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
 
     };
 });
@@ -64,8 +65,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthentication();
 
 app.UseAuthorization();
 

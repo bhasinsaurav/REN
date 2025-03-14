@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace REN.Models;
 
-public partial class RenContext : IdentityDbContext<User>
+public partial class RenContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
     public RenContext()
     {
@@ -26,7 +27,7 @@ public partial class RenContext : IdentityDbContext<User>
 
     public virtual DbSet<OrderItem> OrderItems { get; set; }
 
-    public virtual DbSet<OrderStatus> OrderStatuses { get; set; }
+    public virtual DbSet<OrderStatus> OrderStatus { get; set; }
 
     public virtual DbSet<Ordertable> Ordertables { get; set; }
 
@@ -39,21 +40,10 @@ public partial class RenContext : IdentityDbContext<User>
     public virtual DbSet<RestaurantAddress> RestaurantAddresses { get; set; }
 
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            IConfigurationRoot config = new ConfigurationBuilder()
-               .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("appsettings.json")
-               .Build();
-            string connString = config.GetConnectionString("dbcs")!;
-            optionsBuilder.UseNpgsql(connString); //Or whatever DB you are using
-        }
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Cart>(entity =>
         {
             entity.HasKey(e => e.CartId).HasName("cart_pkey");
@@ -350,31 +340,43 @@ public partial class RenContext : IdentityDbContext<User>
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Userid).HasName("users_pkey");
+            entity.ToTable("users"); // Map to existing users table
 
-            entity.ToTable("users");
+            // Property mappings
+            entity.Property(e => e.Id).HasColumnName("userid");
+            //entity.Property(e => e.UserName).HasColumnName("email");
+            //entity.Property(e => e.NormalizedUserName).HasColumnName("normalized_email");
+            //entity.Property(e => e.Email).HasColumnName("email");
+            //entity.Property(e => e.NormalizedEmail).HasColumnName("normalized_email");
+            entity.Property(e => e.PasswordHash).HasColumnName("password");
+            entity.Property(e => e.SecurityStamp).HasColumnName("security_stamp");
+            entity.Property(e => e.ConcurrencyStamp).HasColumnName("concurrency_stamp");
 
-            entity.HasIndex(e => e.Email, "users_email_key").IsUnique();
-
-            entity.Property(e => e.Userid).HasColumnName("userid");
-            entity.Property(e => e.Email)
-                .HasMaxLength(255)
-                .HasColumnName("email");
+            // Your existing columns
             entity.Property(e => e.FirstName)
                 .HasMaxLength(100)
                 .HasColumnName("first_name");
             entity.Property(e => e.LastName)
                 .HasMaxLength(100)
                 .HasColumnName("last_name");
-            entity.Property(e => e.Password).HasColumnName("password");
-            entity.Property(e => e.UserRole)
-                .HasMaxLength(50)
-                .HasColumnName("user_role");
             entity.Property(e => e.UserTimestamp)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("timestamp without time zone")
                 .HasColumnName("user_timestamp");
+
+            // Remove UserRole mapping since we'll use Identity roles
+            
+
+            // Indexes
+            entity.HasIndex(e => e.Email, "users_email_key").IsUnique();
         });
+        // Identity Role/Claim mappings
+        modelBuilder.Entity<IdentityRole<int>>().ToTable("roles");
+        modelBuilder.Entity<IdentityUserRole<int>>().ToTable("user_roles");
+        modelBuilder.Entity<IdentityUserClaim<int>>().ToTable("user_claims");
+        modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("user_logins");
+        modelBuilder.Entity<IdentityUserToken<int>>().ToTable("user_tokens");
+        modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("role_claims");
+
 
         OnModelCreatingPartial(modelBuilder);
     }
