@@ -3,9 +3,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using REN.Models;
 using RENAPI.APIContracts.Request;
 using RENAPI.APIContracts.Response;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace RENAPI.Controllers
 {
@@ -64,7 +68,25 @@ namespace RENAPI.Controllers
         private string GenerateJWTToken(User user)
         {
 
-            return "bnsdjkbjs";
+            var Claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("Name", user.UserName)
+            };
+
+            var Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtKey));
+
+            var Credentials = new SigningCredentials(Key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                claims: Claims,
+                expires: DateTime.Now.AddMinutes(60),
+                signingCredentials: Credentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
 
