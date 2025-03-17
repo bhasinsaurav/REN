@@ -18,11 +18,12 @@ namespace RENAPI.Controllers
         private readonly string? _jwtKey;
         private readonly RenContext _context;
 
-        public AdminLoginController(UserManager<User> userManager, SignInManager<User> signinManager, IConfiguration configuration)
+        public AdminLoginController(UserManager<User> userManager, SignInManager<User> signinManager, IConfiguration configuration, RenContext dbContext)
         {
             _userManager = userManager;
             _signinManager = signinManager;
             _jwtKey = configuration["Jwt:Key"];
+            _context = dbContext;
         }
 
         [HttpPost("Login")]
@@ -44,8 +45,7 @@ namespace RENAPI.Controllers
 
             int userId = user.Id;
             var token = GenerateJWTToken(user);
-            var restaurant = await _context.Restaurants
-                     .FirstOrDefaultAsync(r => r.UserId == userId);
+            var restaurant = await _context.Restaurants.Where(r => r.UserId == userId).FirstOrDefaultAsync();
 
             int restaurantId = restaurant.RestaurantId;
             string restaurantName = restaurant.RestaurantName;
