@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "RENAPI.Controllers.AdminLoginController",
+    "Method": "Login",
+    "RelativePath": "api/AdminLogin/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginRequest",
+        "Type": "RENAPI.APIContracts.Request.AdminLoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "RENAPI.Controllers.AdminRegisterController",
     "Method": "RegisterAdmin",
     "RelativePath": "api/AdminRegister/Register",
