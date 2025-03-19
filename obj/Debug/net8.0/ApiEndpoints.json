@@ -30,5 +30,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RENAPI.Controllers.MenuController",
+    "Method": "addMenuItem",
+    "RelativePath": "api/Menu/MenuItem",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addMenuItem",
+        "Type": "RENAPI.APIContracts.Request.AdminMenuItemRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

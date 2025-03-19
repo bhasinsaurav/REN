@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using RENAPI.Models;
+using RENAPI.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,8 @@ builder.Services.AddDbContext<RenContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("dbcs")
         ?? throw new InvalidOperationException("Connection string 'dbcs' is missing")));
 
+//SignalR configurations
+builder.Services.AddSignalR();
 
 
 //Identity configurations
@@ -69,5 +72,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<ConnectionHub>("/hubs/connectionhub");
 
 app.Run();

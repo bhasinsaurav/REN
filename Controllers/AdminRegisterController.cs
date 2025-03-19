@@ -53,6 +53,7 @@ namespace RENAPI.Controllers
                         City = rar.City,
                         StreetName = rar.StreetName,    
                         StreetAddress = rar.StreetAddress,
+                        PinCode = rar.PinCode,
                         Province = rar.Province,
                     }).ToList()
                 }).ToList()
