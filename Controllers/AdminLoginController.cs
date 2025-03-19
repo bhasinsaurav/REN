@@ -33,14 +33,14 @@ namespace RENAPI.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] AdminLoginRequest loginRequest)
         {
-            var user = await _userManager.FindByEmailAsync(loginRequest.Username);
+            var user = await _userManager.FindByEmailAsync(loginRequest.Username ?? string.Empty);
 
             if (user == null)
             {
                 return Unauthorized(new { success = false, message = "Invalid username or password" });
             }
 
-            var result = await _signinManager.CheckPasswordSignInAsync(user, loginRequest.Password, false);
+            var result = await _signinManager.CheckPasswordSignInAsync(user, loginRequest.Password ?? string.Empty, false);
 
             if (!result.Succeeded)
             {
@@ -50,6 +50,11 @@ namespace RENAPI.Controllers
             int userId = user.Id;
             var token = GenerateJWTToken(user);
             var restaurant = await _context.Restaurants.Where(r => r.UserId == userId).FirstOrDefaultAsync();
+
+            if (restaurant == null)
+            {
+                return NotFound(new { success = false, message = "Restaurant not found" });
+            }
 
             int restaurantId = restaurant.RestaurantId;
             string restaurantName = restaurant.RestaurantName;
@@ -71,12 +76,12 @@ namespace RENAPI.Controllers
             var Claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email ?? string.Empty),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("Name", user.UserName)
+                new Claim("Name", user.UserName ?? string.Empty)
             };
 
-            var Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtKey));
+            var Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtKey ?? string.Empty));
 
             var Credentials = new SigningCredentials(Key, SecurityAlgorithms.HmacSha256);
 

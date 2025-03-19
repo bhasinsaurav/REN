@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RENAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc9371c786bec8cfa0bcf8d332dd65f78af05f05")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+265569cfd11d5328432e8820c25331c183682841")]
 [assembly: System.Reflection.AssemblyProductAttribute("RENAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RENAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
