@@ -256,3 +256,15 @@ D:\.Net\REN\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 D:\.Net\REN\bin\Debug\net8.0\RENAPI.staticwebassets.runtime.json
 D:\.Net\REN\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
 D:\.Net\REN\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
+D:\.Net\REN\bin\Debug\net8.0\Microsoft.AspNetCore.Connections.Abstractions.dll
+D:\.Net\REN\bin\Debug\net8.0\Microsoft.AspNetCore.Http.Connections.Client.dll
+D:\.Net\REN\bin\Debug\net8.0\Microsoft.AspNetCore.Http.Connections.Common.dll
+D:\.Net\REN\bin\Debug\net8.0\Microsoft.AspNetCore.SignalR.Client.dll
+D:\.Net\REN\bin\Debug\net8.0\Microsoft.AspNetCore.SignalR.Client.Core.dll
+D:\.Net\REN\bin\Debug\net8.0\Microsoft.AspNetCore.SignalR.Common.dll
+D:\.Net\REN\bin\Debug\net8.0\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+D:\.Net\REN\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+D:\.Net\REN\bin\Debug\net8.0\Microsoft.Extensions.Features.dll
+D:\.Net\REN\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\.Net\REN\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+D:\.Net\REN\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll

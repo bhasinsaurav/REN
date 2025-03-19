@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using RENAPI.Models;
-using RENAPI.Hubs;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +72,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapHub<ConnectionHub>("/hubs/connectionhub");
+
 
 app.Run();
