@@ -11,7 +11,7 @@ public partial class Ordertable
 
     public int? RestaurantId { get; set; }
 
-    public int? StatusId { get; set; }
+    public int? StatusId { get; set; } = 1;
 
     public decimal TotalAmount { get; set; }
 

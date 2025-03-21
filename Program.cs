@@ -23,7 +23,7 @@ builder.Services.AddDbContext<RenContext>(options =>
         ?? throw new InvalidOperationException("Connection string 'dbcs' is missing")));
 
 //SignalR configurations
-builder.Services.AddSignalR();
+builder.Services.AddSignalR(cfg => cfg.EnableDetailedErrors =  true);
 
 
 //Identity configurations
@@ -72,6 +72,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapHub<ConnectionHub>("/hubs/connectionhub");
+app.MapHub<ConnectionHub>("/hubs/connectionHub");
 
 app.Run();
