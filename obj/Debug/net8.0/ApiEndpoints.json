@@ -46,5 +46,26 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RENAPI.Controllers.UserMenuController",
+    "Method": "GetMenu",
+    "RelativePath": "api/UserMenu",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RestaurantId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "userIdentifier",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

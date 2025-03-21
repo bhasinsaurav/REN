@@ -268,3 +268,7 @@ D:\.Net\REN\bin\Debug\net8.0\Microsoft.Extensions.Features.dll
 D:\.Net\REN\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
 D:\.Net\REN\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
 D:\.Net\REN\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
+<<<<<<< HEAD
+=======
+D:\.Net\REN\obj\Debug\net8.0\RENAPI.sourcelink.json
+>>>>>>> Editing-file

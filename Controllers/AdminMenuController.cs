@@ -8,10 +8,10 @@ namespace RENAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MenuController : ControllerBase
+    public class AdminMenuController : ControllerBase
     {
         private readonly RenContext _context;
-        public MenuController(RenContext dbContext) { 
+        public AdminMenuController(RenContext dbContext) { 
             _context = dbContext;
         }
 

@@ -97,6 +97,35 @@
           }
         }
       }
+    },
+    "/api/UserMenu": {
+      "get": {
+        "tags": [
+          "UserMenu"
+        ],
+        "parameters": [
+          {
+            "name": "RestaurantId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "userIdentifier",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
