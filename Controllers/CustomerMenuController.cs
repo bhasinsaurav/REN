@@ -19,9 +19,9 @@ namespace RENAPI.Controllers
             _context = dbContext;
         }
         [HttpGet]
-        public async Task<IActionResult> GetMenu([FromQuery]customerMenuRequest getMenu) 
+        public async Task<IActionResult> GetMenu([FromQuery]CustomerMenuRequest getMenu) 
         {
-            if (getMenu == null || string.IsNullOrEmpty(getMenu.userIdentifier) || getMenu.RestaurantId == 0)
+            if (getMenu == null || getMenu.userIdentifier == 0 || getMenu.RestaurantId == 0)
             {
                 return BadRequest("Invalid User Details");
             }

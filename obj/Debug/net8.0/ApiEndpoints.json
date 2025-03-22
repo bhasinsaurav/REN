@@ -16,6 +16,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "RENAPI.Controllers.AdminMenuController",
+    "Method": "addMenuItem",
+    "RelativePath": "api/AdminMenu/MenuItem",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addMenuItem",
+        "Type": "RENAPI.APIContracts.Request.AdminMenuItemRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "RENAPI.Controllers.AdminRegisterController",
     "Method": "RegisterAdmin",
     "RelativePath": "api/AdminRegister/Register",
@@ -32,25 +48,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "RENAPI.Controllers.MenuController",
-    "Method": "addMenuItem",
-    "RelativePath": "api/Menu/MenuItem",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "addMenuItem",
-        "Type": "RENAPI.APIContracts.Request.AdminMenuItemRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "RENAPI.Controllers.UserMenuController",
+    "ContainingType": "RENAPI.Controllers.CustomerMenuController",
     "Method": "GetMenu",
-    "RelativePath": "api/UserMenu",
+    "RelativePath": "api/CustomerMenu",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -62,8 +62,24 @@
       },
       {
         "Name": "userIdentifier",
-        "Type": "System.String",
+        "Type": "System.Int32",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RENAPI.Controllers.CustomerOrderController",
+    "Method": "PostOrderRequest",
+    "RelativePath": "api/CustomerOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderRequest",
+        "Type": "RENAPI.APIContracts.Request.CustomerOrderRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

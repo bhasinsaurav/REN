@@ -2,6 +2,7 @@
 {
     public class CustomerOrderItemRequest
     {
-        public 
+        public int MenuitemId { get; set; }
+        public int Quantity { get; set; }
     }
 }

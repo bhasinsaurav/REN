@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using RENAPI.Models;
 using RENAPI.Hubs;
+using RENAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +25,7 @@ builder.Services.AddDbContext<RenContext>(options =>
 
 //SignalR configurations
 builder.Services.AddSignalR(cfg => cfg.EnableDetailedErrors =  true);
-
+builder.Services.AddScoped<IConnection, Connection>();
 
 //Identity configurations
 builder.Services.AddIdentity<User, Roles>(options =>
