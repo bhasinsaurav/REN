@@ -1,0 +1,71 @@
+[
+  {
+    "ContainingType": "RENAPI.Controllers.AdminLoginController",
+    "Method": "Login",
+    "RelativePath": "api/AdminLogin/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginRequest",
+        "Type": "RENAPI.APIContracts.Request.AdminLoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RENAPI.Controllers.AdminRegisterController",
+    "Method": "RegisterAdmin",
+    "RelativePath": "api/AdminRegister/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "adminregistrationrequest",
+        "Type": "RENAPI.APIContracts.Request.AdminRegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RENAPI.Controllers.MenuController",
+    "Method": "addMenuItem",
+    "RelativePath": "api/Menu/MenuItem",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addMenuItem",
+        "Type": "RENAPI.APIContracts.Request.AdminMenuItemRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RENAPI.Controllers.UserMenuController",
+    "Method": "GetMenu",
+    "RelativePath": "api/UserMenu",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RestaurantId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "userIdentifier",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
